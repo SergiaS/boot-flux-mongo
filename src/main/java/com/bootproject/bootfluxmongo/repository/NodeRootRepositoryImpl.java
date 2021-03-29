@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class NodeRootRepositoryImpl implements NodeBaseRepository<NodeRoot>{
@@ -33,7 +34,7 @@ public class NodeRootRepositoryImpl implements NodeBaseRepository<NodeRoot>{
         List<NodeRoot> response = new ArrayList<>();
 
         for (Document nodeDesc : collection.find()) {
-            NodeRoot nd = new NodeRoot(nodeDesc.get("_id").toString(), nodeDesc.getString("name"), nodeDesc.getString("description"));
+            NodeRoot nd = new NodeRoot(nodeDesc.get("_id").toString(), nodeDesc.getString("name"));
 
             response.add(nd);
         }
@@ -56,4 +57,26 @@ public class NodeRootRepositoryImpl implements NodeBaseRepository<NodeRoot>{
         }
         return response;
     }
+
+    @Override
+    public String add(NodeRoot entity) {
+        MongoClient mongoClient = getClient();
+        MongoDatabase database = mongoClient.getDatabase("test");
+        MongoCollection<Document> collection = database.getCollection("NodeTask");
+
+        String response;
+        try {
+            Document document = new Document(Map.of(
+                    "_id", new ObjectId(),
+                    "name", entity.getName()
+            ));
+            collection.insertOne(document);
+            response = "Successfully Added";
+        } catch (Exception e) {
+            response = "There is a problem with Add method!";
+        }
+        return response;
+    }
+
+
 }

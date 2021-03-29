@@ -8,4 +8,5 @@ public interface NodeBaseRepository<T> {
 
     String delete(String id);
 
+    String add(T entity);
 }
