@@ -2,22 +2,22 @@ package com.bootproject.bootfluxmongo.model;
 
 public abstract class AbstractBaseEntity {
 
-    protected int id;
+    protected String id;
     protected String name;
 
     public AbstractBaseEntity() {
     }
 
-    public AbstractBaseEntity(int id, String name) {
+    public AbstractBaseEntity(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
