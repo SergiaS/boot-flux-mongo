@@ -6,7 +6,9 @@ public interface NodeBaseRepository<T> {
 
     List<T> getAll();
 
-    String delete(String id);
+    boolean delete(String id);
 
-    String add(T entity);
+    T add(T entity);
+
+    T get(String id);
 }

@@ -1,5 +1,8 @@
 package com.bootproject.bootfluxmongo.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class NodeRoot extends AbstractBaseEntity {
 
     public NodeRoot(String id, String name) {

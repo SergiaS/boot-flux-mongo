@@ -1,5 +1,8 @@
 package com.bootproject.bootfluxmongo.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class NodeDesc extends AbstractBaseEntity {
 
     private String description;

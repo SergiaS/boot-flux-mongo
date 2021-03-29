@@ -26,13 +26,18 @@ public class NodeRestController {
         return nodeRootRepository.getAll();
     }
 
+    @GetMapping("/rootNode")
+    public NodeRoot getNodeRoots(@PathParam("id") String id) {
+        return nodeRootRepository.get(id);
+    }
+
     @DeleteMapping("/rootNodes")
-    public String deleteNodeRoots(@PathParam("id") String id) {
+    public boolean deleteNodeRoots(@PathParam("id") String id) {
         return nodeRootRepository.delete(id);
     }
 
     @PostMapping("/rootNodes")
-    public String addNodeRoots(@RequestBody NodeRoot nodeRoot) {
+    public NodeRoot addNodeRoots(@RequestBody NodeRoot nodeRoot) {
         return nodeRootRepository.add(nodeRoot);
     }
 
@@ -43,13 +48,18 @@ public class NodeRestController {
         return nodeDescRepository.getAll();
     }
 
+    @GetMapping("/descriptionNode")
+    public NodeDesc getNodeDesc(@PathParam("id") String id) {
+        return nodeDescRepository.get(id);
+    }
+
     @DeleteMapping("/descriptionNodes")
-    public String deleteNodeDesc(@PathParam("id") String id) {
+    public boolean deleteNodeDesc(@PathParam("id") String id) {
         return nodeDescRepository.delete(id);
     }
 
     @PostMapping("/descriptionNodes")
-    public String addNodeDesc(@RequestBody NodeDesc nodeDesc) {
+    public NodeDesc addNodeDesc(@RequestBody NodeDesc nodeDesc) {
         return nodeDescRepository.add(nodeDesc);
     }
 }
