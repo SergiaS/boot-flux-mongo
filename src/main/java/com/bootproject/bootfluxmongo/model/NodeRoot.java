@@ -4,7 +4,7 @@ public class NodeRoot extends AbstractBaseEntity {
 
     private String description;
 
-    public NodeRoot(int id, String name, String description) {
+    public NodeRoot(String id, String name, String description) {
         super(id, name);
         this.description = description;
     }
