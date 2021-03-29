@@ -1,7 +1,10 @@
 package com.bootproject.bootfluxmongo.model;
 
+import org.springframework.data.annotation.Id;
+
 public abstract class AbstractBaseEntity {
 
+    @Id
     protected String id;
     protected String name;
 
