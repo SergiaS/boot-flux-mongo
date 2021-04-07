@@ -1,5 +1,7 @@
 package com.bootproject.bootfluxmongo.model;
 
+import org.springframework.data.annotation.PersistenceConstructor;
+
 public class NodeDesc extends AbstractBaseEntity {
 
     private String description;
@@ -9,6 +11,7 @@ public class NodeDesc extends AbstractBaseEntity {
         this.description = description;
     }
 
+    @PersistenceConstructor
     public NodeDesc(String id, String name, String description) {
         super.id = id;
         super.name = name;
