@@ -1,14 +1,20 @@
 package com.bootproject.bootfluxmongo.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.PersistenceConstructor;
 
-@Document
 public class NodeDesc extends AbstractBaseEntity {
 
     private String description;
 
+    public NodeDesc(String name, String description) {
+        super.name = name;
+        this.description = description;
+    }
+
+    @PersistenceConstructor
     public NodeDesc(String id, String name, String description) {
-        super(id, name);
+        super.id = id;
+        super.name = name;
         this.description = description;
     }
 

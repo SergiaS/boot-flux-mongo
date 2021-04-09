@@ -1,7 +1,9 @@
 package com.bootproject.bootfluxmongo.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(value = "root")
 public abstract class AbstractBaseEntity {
 
     @Id
@@ -9,11 +11,6 @@ public abstract class AbstractBaseEntity {
     protected String name;
 
     public AbstractBaseEntity() {
-    }
-
-    public AbstractBaseEntity(String id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public String getId() {
@@ -30,13 +27,5 @@ public abstract class AbstractBaseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "AbstractBaseEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 }

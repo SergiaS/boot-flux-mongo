@@ -1,12 +1,17 @@
 package com.bootproject.bootfluxmongo.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.PersistenceConstructor;
 
-@Document
 public class NodeRoot extends AbstractBaseEntity {
 
+    public NodeRoot(String name) {
+        super.name = name;
+    }
+
+    @PersistenceConstructor
     public NodeRoot(String id, String name) {
-        super(id, name);
+        super.id = id;
+        super.name = name;
     }
 
     @Override
