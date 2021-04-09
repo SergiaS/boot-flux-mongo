@@ -2,52 +2,33 @@ package com.bootproject.bootfluxmongo;
 
 import com.bootproject.bootfluxmongo.model.NodeDesc;
 import com.bootproject.bootfluxmongo.model.NodeRoot;
-import com.bootproject.bootfluxmongo.repository.NodeDescRepositoryImpl;
-import com.bootproject.bootfluxmongo.repository.NodeRootRepositoryImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bootproject.bootfluxmongo.repository.NodeDescRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.List;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 
 @SpringBootApplication
-public class BootFluxMongoApplication implements CommandLineRunner {
-
-    @Autowired
-    private NodeRootRepositoryImpl nodeRootRepository;
-
-    @Autowired
-    private NodeDescRepositoryImpl nodeDescRepository;
+@EnableReactiveMongoRepositories
+public class BootFluxMongoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BootFluxMongoApplication.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        List<NodeRoot> nodeRootList = List.of(
-//                new NodeRoot("Zoy"),
-                new NodeRoot("Bob"),
-                new NodeRoot("Matt"),
-                new NodeRoot("Elis"),
-                new NodeRoot("Ted"),
-                new NodeRoot("Jenny"),
-                new NodeRoot("Nora")
-        );
-        List<NodeDesc> nodeDescList = List.of(
-//                new NodeDesc("Zoy", "28, Female, HR"),
-                new NodeDesc("Bob", "34, Male, IT"),
-                new NodeDesc("Matt","27, Male, Sales"),
-                new NodeDesc("Elis", "25, Female, IT"),
-                new NodeDesc("Ted", "38, Male, Admin"),
-                new NodeDesc("Jenny", "23, Female, IT"),
-                new NodeDesc("Nora", "30, Female, Sales")
-        );
-
-        for (int i = 0; i < nodeDescList.size(); i++) {
-            nodeDescRepository.add(nodeDescList.get(i));
-            nodeRootRepository.add(nodeRootList.get(i));
-        }
+    @Bean
+    public CommandLineRunner initConfig(NodeDescRepository repo) {
+        return (p) -> {
+            repo.deleteAll().block();
+            repo.save(new NodeDesc("Bob", "IT")).block();
+            repo.save(new NodeRoot("IT")).block();
+            repo.save(new NodeDesc("Matt", "Sales")).block();
+            repo.save(new NodeDesc("Elis", "HR")).block();
+            repo.save(new NodeDesc("Ted", "Security")).block();
+            repo.save(new NodeRoot("Sales")).block();
+            repo.save(new NodeDesc("Jenny", "Admin")).block();
+            repo.save(new NodeDesc("Nora", "IT")).block();
+        };
     }
 }
