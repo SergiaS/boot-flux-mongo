@@ -1,5 +1,6 @@
 package com.bootproject.bootfluxmongo.controller;
 
+import com.bootproject.bootfluxmongo.dto.DTOEntity;
 import com.bootproject.bootfluxmongo.model.AbstractBaseEntity;
 import com.bootproject.bootfluxmongo.service.NodeDescService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class MainController {
     }
 
     @PostMapping
-    public Mono<AbstractBaseEntity> add(@RequestBody AbstractBaseEntity nodeDesc) {
-        return nodeDescService.addOne(nodeDesc);
+    public Mono<AbstractBaseEntity> add(@RequestBody DTOEntity dtoEntity) {
+        return nodeDescService.addOne(dtoEntity);
     }
 }

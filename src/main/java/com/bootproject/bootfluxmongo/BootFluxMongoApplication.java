@@ -22,11 +22,11 @@ public class BootFluxMongoApplication {
         return (p) -> {
             repo.deleteAll().block();
             repo.save(new NodeDesc("Bob", "IT")).block();
-            repo.save(new NodeRoot("IT")).block();
+            repo.save(new NodeRoot("Mark")).block();
             repo.save(new NodeDesc("Matt", "Sales")).block();
             repo.save(new NodeDesc("Elis", "HR")).block();
             repo.save(new NodeDesc("Ted", "Security")).block();
-            repo.save(new NodeRoot("Sales")).block();
+            repo.save(new NodeRoot("Amy")).block();
             repo.save(new NodeDesc("Jenny", "Admin")).block();
             repo.save(new NodeDesc("Nora", "IT")).block();
         };
