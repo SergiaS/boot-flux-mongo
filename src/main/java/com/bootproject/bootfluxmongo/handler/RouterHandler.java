@@ -1,7 +1,6 @@
 package com.bootproject.bootfluxmongo.handler;
 
 import com.bootproject.bootfluxmongo.dto.DTOEntity;
-import com.bootproject.bootfluxmongo.model.NodeDesc;
 import com.bootproject.bootfluxmongo.repository.NodeDescRepository;
 import com.bootproject.bootfluxmongo.util.NodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class RouterHandler {
 
     public Mono<ServerResponse> getAll(ServerRequest serverRequest) {
         return ok()
-                .body(repository.findAll(), NodeDesc.class);
+                .body(repository.findAll(), DTOEntity.class);
     }
 
     public Mono<ServerResponse> addOne(ServerRequest request) {
